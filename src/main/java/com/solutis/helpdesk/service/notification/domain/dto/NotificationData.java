@@ -13,6 +13,9 @@ import java.util.UUID;
 
 public record NotificationData(
         @NotNull
+        UUID id,
+
+        @NotNull
         UUID ticketId,
 
         @NotNull
@@ -29,6 +32,10 @@ public record NotificationData(
         @Size(max = 250)
         String description,
 
+        @NotBlank
+        @Size(max = 150)
+        String message,
+
         @NotNull
         Priority priority,
 
@@ -39,22 +46,21 @@ public record NotificationData(
         Category category,
 
         @NotNull
-        LocalDateTime createdAt,
-
-        LocalDateTime updatedAt
+        LocalDateTime createdAt
 ) {
     public NotificationData(Notification notification) {
         this(
+                notification.getId(),
                 notification.getTicketId(),
                 notification.getTechnicianId(),
                 notification.getCustomerId(),
                 notification.getTitle(),
                 notification.getDescription(),
+                notification.getMessage(),
                 notification.getPriority(),
                 notification.getStatus(),
                 notification.getCategory(),
-                notification.getCreatedAt(),
-                notification.getUpdatedAt()
+                notification.getCreatedAt()
                 );
     }
 }

@@ -17,6 +17,9 @@ import java.util.UUID;
 @Table(name = "NOTIFICATIONS")
 public class Notification {
     @Id
+    @Column(name = "ID")
+    private UUID id;
+
     @Column(name = "TICKET_ID")
     private UUID ticketId;
 
@@ -32,6 +35,9 @@ public class Notification {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @Column(name = "MESSAGE")
+    private String message;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "PRIORITY")
     private Priority priority;
@@ -46,7 +52,4 @@ public class Notification {
 
     @Column(name = "CREATED_AT")
     private LocalDateTime createdAt;
-
-    @Column(name = "UPDATED_AT")
-    private LocalDateTime updatedAt;
 }
