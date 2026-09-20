@@ -29,6 +29,6 @@ public class NotificationController {
     @GetMapping("/{id}")
     public ResponseEntity<Notification> getNotification(@PathVariable UUID id) {
         Notification notification = notificationService.getNotification(id);
-        return ResponseEntity.ok().body(null);
+        return ResponseEntity.ok().body(notification);
     }
 }
