@@ -32,7 +32,7 @@ public class NotificationController {
         return ResponseEntity.ok().body(notification);
     }
 
-    @GetMapping("/{ticketId}")
+    @GetMapping("/ticket/{ticketId}")
     public ResponseEntity<Page<NotificationData>> getNotificationsByTicketId(@PageableDefault(size = 20) Pageable pageable, @PathVariable UUID ticketId) {
         Page<NotificationData> page = notificationService.getNotificationsByTicketId(pageable, ticketId);
         return ResponseEntity.ok().body(page);
