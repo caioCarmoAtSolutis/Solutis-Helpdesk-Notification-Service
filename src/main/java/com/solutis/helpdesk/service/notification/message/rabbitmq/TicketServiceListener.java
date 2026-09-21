@@ -13,16 +13,19 @@ public class TicketServiceListener {
 
     @RabbitListener(queues = "${rabbitmq.ticket.created.routing-key}")
     public void ListenQueueTicketCreated(TicketMessageData data) {
-        System.out.println("[TicketServiceListener] Received a new ticket created message" + data);
+        String message = "Ticket with id " + data.id() + " created!";
+        notificationService.createNotification(data, message);
     }
 
     @RabbitListener(queues = "${rabbitmq.ticket.assigned.routing-key}")
     public void ListenQueueTicketAssigned(TicketMessageData data) {
-        System.out.println("[TicketServiceListener] Received a new ticket assigned message" + data);
+        String message = "Technician with id " + data.id() + " assigned!";
+        notificationService.createNotification(data,  message);
     }
 
     @RabbitListener(queues = "${rabbitmq.ticket.status-changed.routing-key}")
     public void ListenQueueTicketStatusChanged(TicketMessageData data) {
-        System.out.println("[TicketServiceListener] Received a new ticket status changed message" + data);
+        String message = "Ticket with id " + data.id() + " status changed to " + data.status().toString();
+        notificationService.createNotification(data,   message);
     }
 }

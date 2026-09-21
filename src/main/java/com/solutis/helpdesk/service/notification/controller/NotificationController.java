@@ -1,6 +1,6 @@
 package com.solutis.helpdesk.service.notification.controller;
 
-import com.solutis.helpdesk.service.notification.domain.model.Notification;
+import com.solutis.helpdesk.service.notification.domain.dto.NotificationData;
 import com.solutis.helpdesk.service.notification.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,14 +21,20 @@ public class NotificationController {
     private NotificationService notificationService;
 
     @GetMapping
-    public ResponseEntity<Page<Notification>> getNotifications(@PageableDefault(size = 10) Pageable pageable) {
-        Page<Notification> page = notificationService.getNotifications(pageable);
+    public ResponseEntity<Page<NotificationData>> getNotifications(@PageableDefault(size = 20) Pageable pageable) {
+        Page<NotificationData> page = notificationService.getNotifications(pageable);
         return ResponseEntity.ok().body(page);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Notification> getNotification(@PathVariable UUID id) {
-        Notification notification = notificationService.getNotification(id);
+    public ResponseEntity<NotificationData> getNotification(@PathVariable UUID id) {
+        NotificationData notification = notificationService.getNotification(id);
         return ResponseEntity.ok().body(notification);
+    }
+
+    @GetMapping("/{ticketsId}")
+    public ResponseEntity<Page<NotificationData>> getNotificationsByTicketId(@PageableDefault(size = 20) Pageable pageable, @PathVariable UUID ticketId) {
+        Page<NotificationData> page = notificationService.getNotificationsByTicketId(pageable, ticketId);
+        return ResponseEntity.ok().body(page);
     }
 }

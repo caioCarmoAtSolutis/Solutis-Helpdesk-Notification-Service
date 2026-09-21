@@ -1,5 +1,6 @@
 package com.solutis.helpdesk.service.notification.domain.model;
 
+import com.solutis.helpdesk.service.notification.domain.dto.TicketMessageData;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -52,4 +53,18 @@ public class Notification {
 
     @Column(name = "CREATED_AT")
     private LocalDateTime createdAt;
+
+    public Notification(TicketMessageData data, String message) {
+        this.id = UUID.randomUUID();
+        this.ticketId = data.id();
+        this.technicianId = data.technicianId();
+        this.customerId = data.customerId();
+        this.title = data.title();
+        this.description = data.description();
+        this.message = message;
+        this.priority = Priority.valueOf(data.priority().toString());
+        this.status = Status.valueOf(data.status().toString());
+        this.category = Category.valueOf(data.category().toString());
+        this.createdAt = LocalDateTime.now();
+    }
 }
