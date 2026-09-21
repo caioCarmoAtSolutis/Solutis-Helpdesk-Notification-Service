@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -22,7 +23,10 @@ public class NotificationService {
     }
 
     public NotificationData getNotification(UUID id) {
-        return notificationRepository.findById(id).map(NotificationData::new).orElseThrow(EntityNotFoundException::new);
+        Optional<Notification> optional = notificationRepository.findById(id);
+        if (optional.isEmpty())
+            throw new EntityNotFoundException("Notification with id " + id + " not found");
+        return new NotificationData(optional.get());
     }
 
     public void createNotification(TicketMessageData data, String message) {
