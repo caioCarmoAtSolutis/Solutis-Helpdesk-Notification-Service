@@ -1,5 +1,4 @@
 package com.solutis.helpdesk.service.notification.domain.dto;
-
 import com.solutis.helpdesk.service.notification.domain.model.Category;
 import com.solutis.helpdesk.service.notification.domain.model.Notification;
 import com.solutis.helpdesk.service.notification.domain.model.Priority;

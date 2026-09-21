@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/notification")
+@RequestMapping("/notifications")
 public class NotificationController {
     @Autowired
     private NotificationService notificationService;
@@ -32,7 +32,7 @@ public class NotificationController {
         return ResponseEntity.ok().body(notification);
     }
 
-    @GetMapping("/{ticketsId}")
+    @GetMapping("/{ticketId}")
     public ResponseEntity<Page<NotificationData>> getNotificationsByTicketId(@PageableDefault(size = 20) Pageable pageable, @PathVariable UUID ticketId) {
         Page<NotificationData> page = notificationService.getNotificationsByTicketId(pageable, ticketId);
         return ResponseEntity.ok().body(page);

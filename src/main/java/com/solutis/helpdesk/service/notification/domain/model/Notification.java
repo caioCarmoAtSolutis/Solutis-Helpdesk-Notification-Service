@@ -62,9 +62,9 @@ public class Notification {
         this.title = data.title();
         this.description = data.description();
         this.message = message;
-        this.priority = Priority.valueOf(data.priority().toString());
-        this.status = Status.valueOf(data.status().toString());
-        this.category = Category.valueOf(data.category().toString());
+        this.priority = Priority.valueOf(data.priority().priority().toString());
+        this.status = Status.valueOf(data.status().status().toString());
+        this.category = Category.valueOf(data.category().category().toString());
         this.createdAt = LocalDateTime.now();
     }
 }

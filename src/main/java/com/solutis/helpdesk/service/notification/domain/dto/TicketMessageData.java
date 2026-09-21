@@ -28,13 +28,13 @@ public record TicketMessageData(
         String description,
 
         @NotNull
-        Priority priority,
+        PriorityMessageData priority,
 
         @NotNull
-        Status status,
+        StatusMessageData status,
 
         @NotNull
-        Category category,
+        CategoryMessageData category,
 
         @NotNull
         LocalDateTime createdAt,
